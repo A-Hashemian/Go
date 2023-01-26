@@ -1,7 +1,8 @@
 package main
 
-import (
-	"fmt"
-	"log"
-	"time"
-)
+type Block struct {
+	nonce        int
+	previousHash string
+	timestamp    int64
+	transactions []string
+}
