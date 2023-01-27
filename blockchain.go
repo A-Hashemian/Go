@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"time"
 )
 
@@ -25,4 +26,12 @@ func (b *Block) Print() {
 	fmt.Printf("nonce           %d\n", b.nonce)
 	fmt.Printf("previous_hash   %s\n", b.previousHash)
 	fmt.Printf("transactions    %s\n", b.transactions)
+}
+func init() {
+	log.SetPrefix("Blockchain: ")
+}
+
+func main() {
+	b := NewBlock(0, "init hash")
+	b.Print()
 }
