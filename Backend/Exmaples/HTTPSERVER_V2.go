@@ -51,4 +51,11 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
+// HTTP POST isteğine yanıt vermek için bir işlev tanımlama
+// Define a function to respond to an HTTP POST request
+func loginHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
 	
