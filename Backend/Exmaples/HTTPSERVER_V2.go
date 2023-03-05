@@ -21,3 +21,10 @@ type User struct {
 	Username string
 	Password string
 }
+
+// HTTP isteklerini ele almak için bir yönlendirme mekanizması oluşumu
+// Formation of a redirect mechanism to handle HTTP requests
+func routes() {
+	http.HandleFunc("/", indexHandler)
+	http.HandleFunc("/login", loginHandler)
+}
