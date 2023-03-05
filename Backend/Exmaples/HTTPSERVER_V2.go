@@ -42,3 +42,13 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		"Title": "Hoşgeldiniz",
 		"Body":  "Bu bir test sayfasıdır.",
 	}
+
+// Şablonu veriyle doldurarak yanıt vermesi
+// Reply by filling the template with data
+	err := tmpl.Execute(w, data)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+}
+	
