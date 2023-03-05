@@ -59,3 +59,9 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	
+	
+	// Form verilerini alınmasi
+	// Receiving form data
+	username := r.FormValue("username")
+	password := r.FormValue("password")
+	
