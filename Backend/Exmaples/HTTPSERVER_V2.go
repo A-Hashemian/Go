@@ -74,3 +74,11 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid username or password", http.StatusUnauthorized)
 		return
 	}
+
+// Şifreleri karşılaştırilmasi
+// Comparing passwords
+	if password != user.Password {
+		http.Error(w, "Invalid username or password", http.StatusUnauthorized)
+		return
+	}	
+	
