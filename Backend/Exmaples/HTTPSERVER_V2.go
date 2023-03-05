@@ -28,3 +28,17 @@ func routes() {
 	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/login", loginHandler)
 }
+
+// HTTP GET isteğine yanıt vermek için bir işlev tanımlama
+// Define a function to respond to an HTTP GET request
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+	// Şablon dosyasını yüklenmesi
+	// Loading the template file
+	tmpl := template.Must(template.ParseFiles("templates/index.html"))
+
+	// Şablon verileri için bir harita oluşturmasi
+	// Generating a map for template data
+	data := map[string]string{
+		"Title": "Hoşgeldiniz",
+		"Body":  "Bu bir test sayfasıdır.",
+	}
