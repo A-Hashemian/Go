@@ -15,4 +15,15 @@ type Person struct {
 	Message string
 }
 
-//We define a structure named Person, where there are three properties named Name, Email and Message.
+//defining a structure named Person, where there are three properties named Name, Email and Message.
+
+func formHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("form.html")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	tmpl.Execute(w, nil)
+}
+
+//The formHandler function responds to requests to the / path and displays the HTML form.
