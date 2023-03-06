@@ -27,3 +27,48 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 //The formHandler function responds to requests to the / path and displays the HTML form.
+
+
+func submitHandler(w http.ResponseWriter, r *http.Request) {
+	db, err := sql.Open("sqlite3", "test.db")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	defer db.Close()
+
+	if err = db.Ping(); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	name := r.FormValue("name")
+	email := r.FormValue("email")
+	message := r.FormValue("message")
+
+	person := Person{Name: name, Email: email, Message: message}
+
+	stmt, err := db.Prepare("INSERT INTO people(name, email, message) values(?,?,?)")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	defer stmt.Close()
+
+	_, err = stmt.Exec(person.Name, person.Email, person.Message)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Fprintf(w, "Thank you for your submission, %s!", person.Name)
+}
+
+/*The submitHandler function responds to requests to the /submit path when the form is submitted.
+ This function adds a record to the SQLite database using the database/sql package. 
+ First, the database connection is created using the sql.Open function, and then the database connection is closed by calling 
+ db.Close() with the keyword defer.
+ The db.Ping() function checks if the database connection is healthy. 
+ If there is an error in the connection, an HTTP 500 error is generated with the http.Error function and the request is not responded to.
+ The form data is parsed with the r.FormValue() function and a person variable is created using the structure named Person.
+ The db.Prepare() function prepares an SQL statement in the database.*/
