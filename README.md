@@ -32,6 +32,6 @@ License
 This project is licensed under the MIT License.
 Contact
 
-Your Name - amin@hashemian.com
+E-Mail - amin@hashemian.com
 
 Project Link: https://A-Hashemian/Go
