@@ -6,3 +6,7 @@ import(
   "net/http"
 
 )
+
+type Welcome struct {
+	Name string
+}
