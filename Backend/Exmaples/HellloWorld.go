@@ -49,4 +49,7 @@ The index.html file is as follows:
 </html>
 
 
+In the HTML code The {{.Name}} placeholder will replace the value of the Name variable in the Welcome struct also a form was created and this form
+
+
 */
