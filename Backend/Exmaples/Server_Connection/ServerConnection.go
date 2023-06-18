@@ -17,3 +17,10 @@ func handleConnection(conn net.Conn, port string) {
 		log.Println("Veri okuma hatası:", err)
 		return
 	}
+
+	message := string(buffer[:n])
+	fmt.Printf("Sunucu %s:%s'den mesaj alındı: %s\n", conn.LocalAddr(), port, message)
+
+	// Karşı sunucuya mesajı gönder
+	sendMessageToOtherServer(port, message)
+}
