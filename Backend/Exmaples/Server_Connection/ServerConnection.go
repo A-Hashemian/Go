@@ -24,3 +24,11 @@ func handleConnection(conn net.Conn, port string) {
 	// Karşı sunucuya mesajı gönder
 	sendMessageToOtherServer(port, message)
 }
+
+
+func sendMessageToOtherServer(senderPort string, message string) {
+	// Karşı sunucunun portunu belirle
+	receiverPort := "9000"
+	if senderPort == "9000" {
+		receiverPort = "8000"
+	}
